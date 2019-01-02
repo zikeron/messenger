@@ -1,11 +1,41 @@
-<input type="text" placeholder="Buscar amigo" [(ngModel)]="query" />
-<br>
-<b>Amigos</b>
-<ng-container *ngFor="let user of friends | search: query ; let i = index">
-  <div>
-    <img class="user-status" src="assets/img/logo_live_{{user.status}}.png" alt="Estatus"/>
-    <a routerLink="/conversation/{{user.uid}}">
-      {{i}}. {{user.nick}} - {{user.email}}
-    </a>
+<div id="homeContainer">
+  <div id="whiteBorderGlassBox">
+    <div id="homeHeadContainer">
+      <div class="row">
+        <div class="col-md-auto">
+          <div class="avatarFrameOnline">
+            <img src="assets/img/generic_avatar.png" id="homeAvatarPic">
+          </div>
+        </div>
+        <div class="col">
+          <b>Ziker</b>
+          <div>Online</div>
+          <br>
+          <span>< Escribe un msj personal></span>
+        </div>
+      </div>
+    </div>
   </div>
-</ng-container>
+  <div class="whiteContainerPadded marto15">
+    <div class="row">
+      <div class="col">
+        <input type="text" class="form-control"placeholder="Buscar amigo" [(ngModel)]="query" />
+      </div>
+      <div class="col-md-auto">
+        <img src="assets/img/logo_live_add.png" class="icon" alt="">
+      </div>
+    </div>
+    <hr>
+    <b>Amigos {{friends.length}} / {{friends.length }}</b>
+    <ng-container *ngFor="let user of friends | search: query ; let i = index" class="marbo5">
+      <div>
+        <img class="user-status" src="assets/img/logo_live_{{user.status}}.png" alt="Estatus"/>
+        <span routerLink="/conversation/{{user.uid}}">
+          <b>{{user.nick}}</b> - {{user.subnick || 'No subnick'}}
+          <small>{{ user.email}}</small>
+        </span>
+      </div>
+    </ng-container>
+  </div>
+
+</div>
