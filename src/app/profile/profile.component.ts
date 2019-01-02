@@ -18,7 +18,6 @@ export class ProfileComponent implements OnInit {
       this.userService.getUserById(status.uid).valueChanges().subscribe(
         (data: User) => {
           this.user = data;
-          console.log(this.user);
         },
         (error) => {
         console.log(error);

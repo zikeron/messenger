@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
       .then((data) => {
         alert('Login succesfully');
         console.log(data);
+        this.router.navigate(['home']);
       })
       .catch((error) => {
         if (error.code) {

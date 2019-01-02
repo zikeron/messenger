@@ -30,10 +30,10 @@
     <b>Amigos</b>
     <ng-container *ngFor="let user of friends | search: query ; let i = index" class="marbo5">
       <div>
-        <img class="user-status" src="assets/img/logo_live_{{user.status}}.png" alt="Estatus"/>
+        <img class="user-status" src="assets/img/logo_live_{{user.status}}.png" alt=""/>
         <span routerLink="/conversation/{{user.uid}}">
           <b>{{user.nick}}</b> - {{user.subnick || 'No subnick'}}
-          <small>{{ user.email}}</small>
+          <small>«{{ user.email}}»</small>
         </span>
       </div>
     </ng-container>
