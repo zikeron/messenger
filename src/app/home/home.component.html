@@ -27,7 +27,7 @@
       </div>
     </div>
     <hr>
-    <b>Amigos {{friends.length}} / {{friends.length }}</b>
+    <b>Amigos</b>
     <ng-container *ngFor="let user of friends | search: query ; let i = index" class="marbo5">
       <div>
         <img class="user-status" src="assets/img/logo_live_{{user.status}}.png" alt="Estatus"/>

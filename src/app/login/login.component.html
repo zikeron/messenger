@@ -12,7 +12,7 @@
         <div class="center">
           <h3>Iniciar Sesión</h3>
         <p *ngIf="operation=='register'">Ya tienes cuenta? Has <a (click)= "operation = 'login'">Login</a></p>
-        <p *ngIf="operation=='login'">No tienes cuenta? Has <a (click)="operation = 'register'">Registrate</a></p>
+        <p *ngIf="operation=='login'">No tienes cuenta? <a (click)="operation = 'register'">Registrate</a></p>
         </div>
         <div class="borderedContainer">
           <input [(ngModel)]="email" class="form-control marbo15" type="email" placeholder="Email">

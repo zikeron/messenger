@@ -11,25 +11,28 @@ import {Router} from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   friends: User[];
-  query: string;
+  query: string = '';
   constructor(
     private userService: UserService,
     private authenticationService: AuthenticationService,
     private router: Router) {
-    this.friends = userService.getFriends();
+    this.userService.getUsers().valueChanges().subscribe((data: User[]) => {
+      console.table(data);
+      this.friends = data;
+    }, (error) => {
+      console.log(error);
+    });
   }
 
   ngOnInit() {
   }
 
-  logout(){
-    this.authenticationService.logOut()
-      .then(() => {
-        alert('Session has closed successfully');
-        this.router.navigate(['login']);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  logout() {
+    this.authenticationService.logOut().then(() => {
+      alert('Session has closed successfully');
+      this.router.navigate(['login']);
+    }).catch((error) => {
+      console.log(error);
+    });
   }
 }
