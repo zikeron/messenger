@@ -6,7 +6,8 @@ import {AngularFireDatabase} from '@angular/fire/database';
   providedIn: 'root'
 })
 export class UserService {
-  constructor(private angularFireDatabase: AngularFireDatabase) {}
+  constructor(
+    private angularFireDatabase: AngularFireDatabase) {}
   getUsers() {
     return this.angularFireDatabase.list('/users');
   }
@@ -18,5 +19,8 @@ export class UserService {
   }
   editUser(user) {
     return this.angularFireDatabase.object('/users/' + user.uid).set(user);
+  }
+  setAvatar(avatar, uid) {
+    return this.angularFireDatabase.object('/users/' + uid + '/avatar').set(avatar);
   }
 }
