@@ -1,3 +1,68 @@
-<p>
-  {{ friend | json }}
-</p>
+<div class="conversationContainer bluewhitebg" [ngClass]="{'shaker': shake}">
+  <div class="row">
+    <div class="col-sm-3 maxwi300">
+      <div id="conversationSidebar">
+        <div class="vh30">
+          <div class="avatarFrameOnline">
+            <img src="{{'assets/img/generic_avatar.png'}}" class="avatarImage img-fluid">
+          </div>
+        </div>
+        <div class="vh30"></div>
+        <div class="vh25">
+          <div class="avatarFrameOnline">
+            <img src="{{'assets/img/generic_avatar.png'}}" class="avatarImage img-fluid">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-9">
+      <br/>
+      <span class="friendName">Amigo 1</span> (online)
+      <hr/>
+      <div class="vh55 overscroll pabo10" id="messageArea">
+        <div class="messageGroup" *ngFor="let m of conversation">
+          <b>{{getUserNickById(m.sender)}}</b>
+          <span *ngIf="m.type !== 'buzz' "> dice :</span>
+          <span *ngIf="m.type === 'buzz' "> ha envido : </span>
+          <div>
+            <span *ngIf="m.type !== 'buzz' "> {{m.textMessage}} </span>
+            <span *ngIf="m.type === 'buzz' " style="color: lightgray"> zumbido </span>
+            <img *ngIf="m.type === 'img'" src="{{m.text}}"/>
+          </div>
+        </div>
+      </div>
+      <div class="messageControlsContainer">
+        <image-cropper
+          [imageChangedEvent]="imageChangedEvent"
+          [maintainAspectRatio]="true"
+          [aspectRatio]="1 / 1"
+          [resizeToWidth]="128"
+          format="jpg"
+          (imageCropped)="imageCropped($event)"
+          (imageLoaded)="imageLoaded()"
+          (loadImageFailed)="loadImageFailed()"
+        ></image-cropper>
+        <textarea [(ngModel)]="textMessage" (keyup.enter)="sendMessage()" class="form-control" cols="30" rows="5">
+        </textarea>
+        <div id="messageToolBar">
+          <div class="item">
+            <img src="assets/img/icons/regular_smile.gif" class="tool">
+            <i name="caret-down"></i>
+          </div>
+          <div class="item">
+            <img src="assets/img/icons/wink_smile.gif" class="tool">
+            <i name="caret-down"></i>
+          </div>
+          <div class="item" (click)="sendBuzz()">
+            <img src="assets/img/zumbido.png" class="tool">
+          </div>
+          <label class="custom-file-upload">
+            <input type="file" (change)="fileChangeEvent($event)">
+            <i name="image"></i> Subir Imagen
+          </label>
+          <a (click)="sendImage()" class="btn btn-primary btn-light ml-3 marri10" accept="image/*">Enviar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
