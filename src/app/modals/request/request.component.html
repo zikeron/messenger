@@ -5,22 +5,26 @@
       <a class="closeButton" (click)="close()">&times;</a>
     </div>
     <div class="modal-body" style="height: auto">
-      <div class="row">
-        <div class="col-md-auto">
-          <img src="assets/img/generic_avatar.png" class="img-fluid">
+      <div class="row" *ngIf="user">
+        <div class="col-md-3">
+          <img [src]="user.avatar || assets/img/generic_avatar.png" class="img-fluid">
         </div>
-        <div class="col-md">
-          <b>{{currentRequest.sender}}</b>
-          <small>Te ha enviado esta solicitud</small>
+        <div class="col-md-9" >
+          <b>{{user.nick}}</b>
+          <p><small>«{{user.email}}»</small></p>
+          <p>Te ha enviado esta solicitud</p>
         </div>
         <hr/>
-        <h4>¿Deseas agregar a ésta persona?</h4>
-        <input type="radio" name="addToMsn" [ngModel]="shouldAdd" value="yes" id="add-yes">
-        <label for="add-yes">Si, agregar a mis contactos.</label><br/>
-        <input type="radio" name="addToMsn" [ngModel]="shouldAdd" value="no" id="add-no">
-        <label for="add-no">No deseo agregar a mis contactos.</label><br/>
-        <input type="radio" name="addToMsn" [ngModel]="shouldAdd" value="no" id="add-later">
-        <label for="add-later">Dejar para después.</label><br/>
+        <div class="col-md-12">
+          <h4>¿Deseas agregar a ésta persona?</h4>
+          <br/>
+          <input type="radio" name="addToMsn" [(ngModel)]="shouldAdd" value="yes" id="add-yes">
+          <label for="add-yes"> &nbsp; Si, agregar a mis contactos.</label><br/>
+          <input type="radio" name="addToMsn" [(ngModel)]="shouldAdd" value="no" id="add-no">
+          <label for="add-no"> &nbsp; No deseo agregar a mis contactos.</label><br/>
+          <input type="radio" name="addToMsn" [(ngModel)]="shouldAdd" value="later" id="add-later">
+          <label for="add-later"> &nbsp; Dejar para después.</label><br/>
+        </div>
       </div>
       <div class="modal-footer">
         <a class="btn btn-primary" (click)="accept()">OK</a>

@@ -22,6 +22,9 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { RequestComponent } from './modals/request/request.component';
+import {AuthenticationService} from './services/authentication.service';
+import {UserService} from './services/user.service';
+import {RequestsService} from './services/requests.service';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},

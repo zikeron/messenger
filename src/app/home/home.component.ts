@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   query: string = '';
   friendEmail = '';
   user: User;
+  closeResult: string;
   constructor(
     private userService: UserService,
     private authenticationService: AuthenticationService,
