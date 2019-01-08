@@ -20,6 +20,7 @@ export class RequestComponent extends DialogComponent<PromptModel, any> implemen
   currentRequest: any;
   shouldAdd: string = 'yes' ;
   user: User;
+  message: string;
   constructor(public dialogService: DialogService,
               private userService: UserService,
               private requestService: RequestsService) {
@@ -30,6 +31,9 @@ export class RequestComponent extends DialogComponent<PromptModel, any> implemen
       this.userService.getUserById(this.currentRequest.sender).valueChanges().subscribe((user: User) => {
         this.user = user;
       }, (err) => { console.log(err); });
+     if (this.currentRequest.receiver_msg) {
+       this.message = this.currentRequest.receiver_msg.trim();
+     }
     }
   }
   accept() {

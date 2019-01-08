@@ -17,6 +17,8 @@ export class HomeComponent implements OnInit {
   friendEmail = '';
   user: User;
   closeResult: string;
+  message: string;
+  
   constructor(
     private userService: UserService,
     private authenticationService: AuthenticationService,
@@ -32,6 +34,10 @@ export class HomeComponent implements OnInit {
     this.authenticationService.getStatus().subscribe((staus) => {
       this.userService.getUserById(staus.uid).valueChanges().subscribe((data: User) => {
         this.user = data;
+        if (this.user.friends) {
+          this.user.friends = Object.values(this.user.friends);
+          console.log(this.user);
+        }
       });
     });
   }
@@ -71,7 +77,8 @@ export class HomeComponent implements OnInit {
       timestamp: Date.now(),
       receiver_email: this.friendEmail,
       sender: this.user.uid,
-      status: 'pending'
+      status: 'pending',
+      receiver_msg: this.message
     };
     this.requestService.createRequest(request)
       .then(() => {

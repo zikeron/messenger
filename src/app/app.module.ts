@@ -25,6 +25,7 @@ import { RequestComponent } from './modals/request/request.component';
 import {AuthenticationService} from './services/authentication.service';
 import {UserService} from './services/user.service';
 import {RequestsService} from './services/requests.service';
+import { ContactComponent } from './contact/contact.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -44,7 +45,8 @@ const appRoutes: Routes = [
     ProfileComponent,
     MenuComponent,
     SearchPipe,
-    RequestComponent
+    RequestComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,

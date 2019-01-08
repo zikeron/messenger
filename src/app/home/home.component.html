@@ -20,41 +20,40 @@
   <div class="whiteContainerPadded marto15">
     <div class="row">
       <div class="col">
-        <input type="text" class="form-control"placeholder="Buscar amigo" [(ngModel)]="query" />
+        <input type="text" class="form-control" placeholder="Buscar amigo" [(ngModel)]="query"/>
       </div>
       <div class="col-md-auto">
         <img src="assets/img/logo_live_add.png" class="icon" alt="" (click)="open(content)">
       </div>
     </div>
     <hr>
-    <b>Amigos</b>
-    <ng-container *ngFor="let user of friends | search: query ; let i = index" class="marbo5">
-      <div>
-        <img class="user-status" src="assets/img/logo_live_{{user.status}}.png" alt=""/>
-        <span routerLink="/conversation/{{user.uid}}">
-          <b>{{user.nick}}</b> - {{user.subnick || 'No subnick'}}
-          <small>«{{ user.email}}»</small>
-        </span>
+    <b *ngIf="user && user.friends">Amigos {{user.friends.length}} / {{user.friends.length}} </b>
+    <div *ngIf="user && user.friends">
+      <div class="disblo marbo5">
+        <app-contact class="col-md-12" *ngFor="let user of user.friends | search: query ; let i = index" [uid]="user" >{{ user}}
+        </app-contact>
       </div>
-    </ng-container>
-  </div>
-</div>
-<ng-template #content let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Agregar Amigo</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <div >
-      <b>
-        Ingresa Email
-    </b>
-      <input type="text" class="form-control" placeholder="Email" [(ngModel)]="friendEmail" (keyup.enter)="sendRequest()" >
     </div>
   </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="sendRequest()">Enviar</button>
-  </div>
-</ng-template>
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Agregar Amigo</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div>
+        <b>
+          Ingresa Email
+        </b>
+        <input type="text" class="form-control" placeholder="Email" [(ngModel)]="friendEmail"
+               (keyup.enter)="sendRequest()">
+      </div>
+      <hr/>
+      <textarea class="form-control" placeholder="Escribe un mensaje" [(ngModel)]="message" ></textarea>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="sendRequest()">Enviar</button>
+    </div>
+  </ng-template>
