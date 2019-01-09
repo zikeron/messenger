@@ -24,6 +24,7 @@
     "@ng-bootstrap/ng-bootstrap": "^4.0.1",
     "bootstrap": "4.2.1",
     "core-js": "^2.5.4",
+    "electron": "4.0.1",
     "firebase": "^5.7.2",
     "install": "^0.12.2",
     "ng2-bootstrap-modal": "^1.0.1",
